@@ -1,0 +1,28 @@
+[{
+  "_id": {
+    "$oid": "6ab12cad24b920e662ecb0c1"
+  },
+  "guest": {
+    "$oid": "6aae47250c1d01bf422ecfbf"
+  },
+  "booking": {
+    "$oid": "6aaec7bb31b93210998f8b61"
+  },
+  "room": {
+    "$oid": "6aae83281bb382665d6b0cdc"
+  },
+  "rating": 5,
+  "title": "good",
+  "message": "thankyou for best service",
+  "cleanlinessRating": 5,
+  "serviceRating": 5,
+  "roomRating": 5,
+  "status": "reviewed",
+  "createdAt": {
+    "$date": "2026-09-21T13:10:05.177Z"
+  },
+  "updatedAt": {
+    "$date": "2026-09-21T13:18:18.735Z"
+  },
+  "__v": 0
+}]

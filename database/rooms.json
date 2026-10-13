@@ -1,0 +1,105 @@
+[{
+  "_id": {
+    "$oid": "6aae82581bb382665d6b0cdb"
+  },
+  "roomNumber": "101",
+  "name": "Serene Garden Room",
+  "type": "Serene Room",
+  "pricePerNight": 25000,
+  "capacity": 2,
+  "bedType": "king bed",
+  "status": "occupied",
+  "floor": 1,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-09-19T12:38:48.433Z"
+  },
+  "updatedAt": {
+    "$date": "2026-09-19T13:41:43.287Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6aae83281bb382665d6b0cdc"
+  },
+  "roomNumber": "205",
+  "name": "Signature City Suite",
+  "type": "Signature Suite",
+  "pricePerNight": 40000,
+  "capacity": 3,
+  "bedType": "king bed",
+  "status": "reserved",
+  "floor": 2,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-09-19T12:42:16.856Z"
+  },
+  "updatedAt": {
+    "$date": "2026-09-21T16:32:44.693Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6aae83621bb382665d6b0cdd"
+  },
+  "roomNumber": "307",
+  "name": "Royal Grand Residence",
+  "type": "Royal Residence",
+  "pricePerNight": 65000,
+  "capacity": 4,
+  "bedType": "2 King Beds",
+  "status": "occupied",
+  "floor": 3,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-09-19T12:43:14.732Z"
+  },
+  "updatedAt": {
+    "$date": "2026-09-21T16:32:52.469Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6ab15c2024b920e662ecb0c2"
+  },
+  "roomNumber": "501",
+  "name": "royal residence",
+  "type": "Royal Residence",
+  "pricePerNight": 100000,
+  "capacity": 5,
+  "bedType": "king bed",
+  "status": "available",
+  "floor": 5,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-09-21T16:32:32.475Z"
+  },
+  "updatedAt": {
+    "$date": "2026-09-21T16:32:32.475Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6acb99e050651a99ebdf8fbf"
+  },
+  "roomNumber": "506",
+  "name": "Signature City Suite",
+  "type": "Signature Suite",
+  "pricePerNight": 25000,
+  "capacity": 2,
+  "bedType": "normal",
+  "status": "maintenance",
+  "floor": 5,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2026-10-11T14:14:56.074Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-11T14:14:56.074Z"
+  },
+  "__v": 0
+}]

@@ -1,0 +1,25 @@
+[{
+  "_id": {
+    "$oid": "6aafa4fec7af7ab2f97d013c"
+  },
+  "room": {
+    "$oid": "6aae83621bb382665d6b0cdd"
+  },
+  "issueTitle": "Air Conditioner Not Working",
+  "description": "Room air conditioner is not cooling properly.",
+  "priority": "urgent",
+  "status": "completed",
+  "reportedBy": {
+    "$oid": "6aae61d3d820e515eb2a7b1c"
+  },
+  "completedAt": {
+    "$date": "2026-09-20T09:19:04.811Z"
+  },
+  "createdAt": {
+    "$date": "2026-09-20T09:18:55.012Z"
+  },
+  "updatedAt": {
+    "$date": "2026-09-20T09:19:04.816Z"
+  },
+  "__v": 0
+}]

@@ -1,0 +1,57 @@
+[{
+  "_id": {
+    "$oid": "6acb931bf7c74d9ffecc2518"
+  },
+  "name": "haniya yaseen",
+  "email": "haniyayaseen58@gmail.com",
+  "password": "$2b$10$I0P3s3vY7ffq7RTaCsp3DuMZLl.sdesdOz5c3aJnw42XDlviQCcdS",
+  "role": "guest",
+  "resetOtpHash": null,
+  "resetOtpExpires": null,
+  "resetOtpVerified": false,
+  "createdAt": {
+    "$date": "2026-10-11T13:46:03.522Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-11T14:07:28.173Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6acb991850651a99ebdf8fbe"
+  },
+  "name": "admin",
+  "email": "admin@luxury.com",
+  "password": "$2b$10$XOHv3c0zWmkkstB4MhqCpuDBM8yYCZng.bw/qoYwVJSKZRQQtiEaa",
+  "role": "admin",
+  "resetOtpHash": null,
+  "resetOtpExpires": null,
+  "resetOtpVerified": false,
+  "createdAt": {
+    "$date": "2026-10-11T14:11:36.751Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-11T14:11:36.751Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6acb9a3350651a99ebdf8fc0"
+  },
+  "name": "saadkhan1",
+  "email": "saadkhan@luxury.com",
+  "password": "$2b$10$pDis8lDtRBF5dR2FSW9iG.q8KKNtC36PzComcpzkwx42CvXnC4Nua",
+  "role": "staff",
+  "resetOtpHash": null,
+  "resetOtpExpires": null,
+  "resetOtpVerified": false,
+  "createdAt": {
+    "$date": "2026-10-11T14:16:19.714Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-11T14:16:19.714Z"
+  },
+  "__v": 0
+}]

@@ -1,0 +1,158 @@
+[{
+  "_id": {
+    "$oid": "6aaec7bb31b93210998f8b61"
+  },
+  "guest": {
+    "$oid": "6aae47250c1d01bf422ecfbf"
+  },
+  "room": {
+    "$oid": "6aae83281bb382665d6b0cdc"
+  },
+  "checkInDate": {
+    "$date": "2026-09-20T00:00:00.000Z"
+  },
+  "checkOutDate": {
+    "$date": "2026-09-21T00:00:00.000Z"
+  },
+  "numberOfGuests": 1,
+  "guestDetails": {
+    "fullName": "haris khan",
+    "phone": "3239575741",
+    "email": "haris12@gmail.com",
+    "address": "husainabad",
+    "nationality": "Pakistan",
+    "documentType": "cnic",
+    "documentNumber": "42301-42185574-1",
+    "documentFront": "",
+    "documentBack": "",
+    "emergencyContact": "03425178901",
+    "vehicleNumber": ""
+  },
+  "verificationStatus": "verified",
+  "bookingStatus": "checked-out",
+  "totalNights": 1,
+  "pricePerNight": 40000,
+  "totalAmount": 40000,
+  "specialRequests": "“Please provide a quiet room with a nice view.”",
+  "verifiedBy": {
+    "$oid": "6aad295b1d58a58655b5c9a2"
+  },
+  "checkedInAt": {
+    "$date": "2026-09-19T18:31:49.318Z"
+  },
+  "checkedOutAt": {
+    "$date": "2026-09-20T08:50:46.371Z"
+  },
+  "createdAt": {
+    "$date": "2026-09-19T17:34:51.728Z"
+  },
+  "updatedAt": {
+    "$date": "2026-09-20T08:50:46.423Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6aaff192fe2ba9aba5f7e64e"
+  },
+  "guest": {
+    "$oid": "6aae47250c1d01bf422ecfbf"
+  },
+  "room": {
+    "$oid": "6aae82581bb382665d6b0cdb"
+  },
+  "checkInDate": {
+    "$date": "2026-09-21T00:00:00.000Z"
+  },
+  "checkOutDate": {
+    "$date": "2026-09-22T00:00:00.000Z"
+  },
+  "numberOfGuests": 1,
+  "guestDetails": {
+    "fullName": "rehan",
+    "phone": "3239575741",
+    "email": "rehan@123gmail.com",
+    "address": "ranchorline market",
+    "nationality": "Pakistan",
+    "documentType": "cnic",
+    "documentNumber": "42301-42185574-1",
+    "documentFront": "C:\\Users\\DELL\\Documents\\LuxuryStay-HMS\\server\\uploads\\identity\\1789915537634-632675984.jpg",
+    "documentBack": "C:\\Users\\DELL\\Documents\\LuxuryStay-HMS\\server\\uploads\\identity\\1789915537692-13361255.jpeg",
+    "emergencyContact": "03425178901",
+    "vehicleNumber": ""
+  },
+  "verificationStatus": "pending",
+  "bookingStatus": "pending",
+  "totalNights": 1,
+  "pricePerNight": 25000,
+  "totalAmount": 25000,
+  "specialRequests": "",
+  "verifiedBy": null,
+  "checkedInAt": null,
+  "checkedOutAt": null,
+  "createdAt": {
+    "$date": "2026-09-20T14:45:38.355Z"
+  },
+  "updatedAt": {
+    "$date": "2026-09-20T14:45:38.355Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6ab10ee0fe2ba9aba5f7e64f"
+  },
+  "guest": {
+    "$oid": "6aae47250c1d01bf422ecfbf"
+  },
+  "room": {
+    "$oid": "6aae82581bb382665d6b0cdb"
+  },
+  "checkInDate": {
+    "$date": "2026-09-23T00:00:00.000Z"
+  },
+  "checkOutDate": {
+    "$date": "2026-09-24T00:00:00.000Z"
+  },
+  "numberOfGuests": 2,
+  "guestDetails": {
+    "fullName": "sara",
+    "phone": "3239575745",
+    "email": "sara@gmail.com",
+    "address": "baldia town",
+    "nationality": "Pakistan",
+    "documentType": "cnic",
+    "documentNumber": "42301-42185564-1",
+    "documentFront": "C:\\Users\\DELL\\Documents\\LuxuryStay-HMS\\server\\uploads\\identity\\1789988576541-917523775.jpeg",
+    "documentBack": "C:\\Users\\DELL\\Documents\\LuxuryStay-HMS\\server\\uploads\\identity\\1789988576556-855194831.jpeg",
+    "emergencyContact": "03425178801",
+    "vehicleNumber": ""
+  },
+  "verificationStatus": "verified",
+  "bookingStatus": "checked-in",
+  "totalNights": 1,
+  "pricePerNight": 25000,
+  "totalAmount": 25000,
+  "specialRequests": "",
+  "verifiedBy": {
+    "$oid": "6aad295b1d58a58655b5c9a2"
+  },
+  "checkedInAt": {
+    "$date": "2026-10-11T14:18:14.160Z"
+  },
+  "checkedOutAt": null,
+  "createdAt": {
+    "$date": "2026-09-21T11:02:56.672Z"
+  },
+  "updatedAt": {
+    "$date": "2026-10-11T14:18:14.174Z"
+  },
+  "__v": 0,
+  "amountPaid": 25000,
+  "paymentDate": {
+    "$date": "2026-09-21T12:12:35.646Z"
+  },
+  "paymentMethod": "cash",
+  "paymentStatus": "paid",
+  "transactionReference": ""
+}]

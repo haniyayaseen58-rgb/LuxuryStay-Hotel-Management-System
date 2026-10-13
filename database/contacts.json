@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "6ab16bc28866d32ee09e37b0"
+  },
+  "name": "Haniya Yaseen",
+  "email": "haniyayaseen58@gmail.com",
+  "phone": "3239575745",
+  "enquiryType": "Private Transfer",
+  "message": "I need a private airport transfer. Please share the charges and pickup details.",
+  "status": "new",
+  "createdAt": {
+    "$date": "2026-09-21T17:39:14.970Z"
+  },
+  "updatedAt": {
+    "$date": "2026-09-21T17:39:14.970Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6ab2a9538866d32ee09e37b1"
+  },
+  "name": "Haniya Yaseen",
+  "email": "haniyayaseen58@gmail.com",
+  "phone": "3239575518",
+  "enquiryType": "Room Reservation",
+  "message": "..\\",
+  "status": "new",
+  "createdAt": {
+    "$date": "2026-09-22T16:14:11.814Z"
+  },
+  "updatedAt": {
+    "$date": "2026-09-22T16:14:11.814Z"
+  },
+  "__v": 0
+}]
