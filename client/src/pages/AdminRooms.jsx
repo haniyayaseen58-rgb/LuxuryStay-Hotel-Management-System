@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -15,6 +16,9 @@ import {
 } from "lucide-react";
 
 import "./AdminRooms.css";
+
+const API_URL =
+  "https://luxury-stay-hotel-management-system-hzn8-qsgkf4yqb.vercel.app";
 
 function AdminRooms() {
   const navigate = useNavigate();
@@ -42,14 +46,11 @@ function AdminRooms() {
     try {
       setLoading(true);
 
-      const response = await fetch(
-        "http://localhost:5000/api/rooms",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(`${API_URL}/api/rooms`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       const data = await response.json();
 
@@ -110,8 +111,8 @@ function AdminRooms() {
       };
 
       const url = editingRoomId
-        ? `http://localhost:5000/api/rooms/${editingRoomId}`
-        : "http://localhost:5000/api/rooms";
+        ? `${API_URL}/api/rooms/${editingRoomId}`
+        : `${API_URL}/api/rooms`;
 
       const response = await fetch(url, {
         method: editingRoomId ? "PUT" : "POST",
@@ -170,15 +171,13 @@ function AdminRooms() {
       "Are you sure you want to delete this room?"
     );
 
-    if (!confirmed) {
-      return;
-    }
+    if (!confirmed) return;
 
     try {
       setMessage("");
 
       const response = await fetch(
-        `http://localhost:5000/api/rooms/${roomId}`,
+        `${API_URL}/api/rooms/${roomId}`,
         {
           method: "DELETE",
           headers: {
@@ -255,7 +254,6 @@ function AdminRooms() {
           <div className="room-form-grid">
             <div className="room-field">
               <label>ROOM NUMBER</label>
-
               <div className="room-input">
                 <DoorOpen size={17} />
                 <input
@@ -271,7 +269,6 @@ function AdminRooms() {
 
             <div className="room-field">
               <label>ROOM NAME</label>
-
               <div className="room-input">
                 <BedDouble size={17} />
                 <input
@@ -287,34 +284,23 @@ function AdminRooms() {
 
             <div className="room-field">
               <label>ROOM TYPE</label>
-
               <div className="room-input">
                 <Hotel size={17} />
-
                 <select
                   name="type"
                   value={formData.type}
                   onChange={handleChange}
                   required
                 >
-                  <option value="Serene Room">
-                    Serene Room
-                  </option>
-
-                  <option value="Signature Suite">
-                    Signature Suite
-                  </option>
-
-                  <option value="Royal Residence">
-                    Royal Residence
-                  </option>
+                  <option value="Serene Room">Serene Room</option>
+                  <option value="Signature Suite">Signature Suite</option>
+                  <option value="Royal Residence">Royal Residence</option>
                 </select>
               </div>
             </div>
 
             <div className="room-field">
               <label>PRICE PER NIGHT</label>
-
               <div className="room-input">
                 <Banknote size={17} />
                 <input
@@ -331,7 +317,6 @@ function AdminRooms() {
 
             <div className="room-field">
               <label>GUEST CAPACITY</label>
-
               <div className="room-input">
                 <Users size={17} />
                 <input
@@ -348,7 +333,6 @@ function AdminRooms() {
 
             <div className="room-field">
               <label>BED TYPE</label>
-
               <div className="room-input">
                 <BedDouble size={17} />
                 <input
@@ -364,7 +348,6 @@ function AdminRooms() {
 
             <div className="room-field">
               <label>FLOOR</label>
-
               <div className="room-input">
                 <Layers3 size={17} />
                 <input
@@ -381,34 +364,18 @@ function AdminRooms() {
 
             <div className="room-field">
               <label>ROOM STATUS</label>
-
               <div className="room-input">
                 <RefreshCw size={17} />
-
                 <select
                   name="status"
                   value={formData.status}
                   onChange={handleChange}
                 >
-                  <option value="available">
-                    Available
-                  </option>
-
-                  <option value="reserved">
-                    Reserved
-                  </option>
-
-                  <option value="occupied">
-                    Occupied
-                  </option>
-
-                  <option value="cleaning">
-                    Cleaning
-                  </option>
-
-                  <option value="maintenance">
-                    Maintenance
-                  </option>
+                  <option value="available">Available</option>
+                  <option value="reserved">Reserved</option>
+                  <option value="occupied">Occupied</option>
+                  <option value="cleaning">Cleaning</option>
+                  <option value="maintenance">Maintenance</option>
                 </select>
               </div>
             </div>
@@ -439,7 +406,6 @@ function AdminRooms() {
               ) : (
                 <Plus size={18} />
               )}
-
               {submitting
                 ? "Saving..."
                 : editingRoomId
@@ -474,12 +440,9 @@ function AdminRooms() {
             <div className="rooms-empty-icon">
               <BedDouble size={30} />
             </div>
-
             <strong>No rooms added yet</strong>
-
             <p>
-              Add your first LuxuryStay room using the form
-              above.
+              Add your first LuxuryStay room using the form above.
             </p>
           </div>
         ) : (
@@ -505,34 +468,22 @@ function AdminRooms() {
                         <div>
                           <BedDouble size={17} />
                         </div>
-
                         <span>
-                          <strong>
-                            Room {room.roomNumber}
-                          </strong>
+                          <strong>Room {room.roomNumber}</strong>
                           <small>{room.name}</small>
                         </span>
                       </div>
                     </td>
-
                     <td>{room.type}</td>
-
                     <td>Floor {room.floor}</td>
-
                     <td>
                       {room.capacity}{" "}
-                      {room.capacity === 1
-                        ? "Guest"
-                        : "Guests"}
+                      {room.capacity === 1 ? "Guest" : "Guests"}
                     </td>
-
                     <td>
                       Rs.{" "}
-                      {Number(
-                        room.pricePerNight
-                      ).toLocaleString()}
+                      {Number(room.pricePerNight).toLocaleString()}
                     </td>
-
                     <td>
                       <span
                         className={`room-status room-status-${room.status}`}
@@ -540,7 +491,6 @@ function AdminRooms() {
                         {room.status}
                       </span>
                     </td>
-
                     <td>
                       <div className="room-actions">
                         <button
@@ -550,13 +500,10 @@ function AdminRooms() {
                         >
                           <Pencil size={15} />
                         </button>
-
                         <button
                           type="button"
                           className="room-delete-btn"
-                          onClick={() =>
-                            handleDelete(room._id)
-                          }
+                          onClick={() => handleDelete(room._id)}
                         >
                           <Trash2 size={15} />
                         </button>
