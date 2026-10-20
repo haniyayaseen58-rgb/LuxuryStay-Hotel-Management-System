@@ -22,12 +22,8 @@ app.use(express.json());
 
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("MongoDB Connected Successfully");
-  })
-  .catch((error) => {
-    console.error("MongoDB Connection Error:", error.message);
-  });
+  .then(() => console.log("MongoDB Connected Successfully"))
+  .catch((error) => console.error("MongoDB Connection Error:", error.message));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/rooms", roomRoutes);
@@ -44,6 +40,10 @@ app.get("/", (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`LuxuryStay server running on port ${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`LuxuryStay server running on port ${PORT}`);
+  });
+}
+
+module.exports = app;
