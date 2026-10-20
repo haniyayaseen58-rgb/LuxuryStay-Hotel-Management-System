@@ -41,7 +41,9 @@ app.get("/", (req, res) => {
     message: "LuxuryStay Backend API is running successfully!",
   });
 });
-
+app.listen(PORT, () => {
+  console.log(`LuxuryStay server running on port ${PORT}`);
+});
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
