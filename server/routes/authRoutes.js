@@ -183,7 +183,12 @@ router.post("/login", async (req, res) => {
       email: email.toLowerCase().trim(),
     });
 
+    // Server-side only: why a login failed (never logs the password)
+    const loginTarget = `${email.toLowerCase().trim()} [db: ${User.db.name}]`;
+
     if (!user) {
+      console.warn(`Login failed: no account for ${loginTarget}`);
+
       return res.status(401).json({
         success: false,
         message: "Invalid email or password.",
@@ -196,6 +201,14 @@ router.post("/login", async (req, res) => {
     );
 
     if (!passwordMatch) {
+      console.warn(
+        `Login failed: wrong password for ${loginTarget}${
+          /^\s|\s$/.test(password)
+            ? " (entered password has leading/trailing spaces)"
+            : ""
+        }`
+      );
+
       return res.status(401).json({
         success: false,
         message: "Invalid email or password.",

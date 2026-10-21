@@ -14,6 +14,7 @@ import {
   WalletCards,
 } from "lucide-react";
 
+import API_BASE_URL from "../config/api";
 import "./AdminReports.css";
 
 function AdminReports() {
@@ -49,7 +50,7 @@ function AdminReports() {
       setError("");
 
       const response = await fetch(
-        "http://localhost:5000/api/reports/admin",
+        `${API_BASE_URL}/api/reports/admin`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

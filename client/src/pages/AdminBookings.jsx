@@ -19,6 +19,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+import API_BASE_URL from "../config/api";
 import "./AdminBookings.css";
 
 function AdminBookings() {
@@ -38,7 +39,7 @@ function AdminBookings() {
       setMessage("");
 
       const response = await fetch(
-        "http://localhost:5000/api/bookings/admin",
+        `${API_BASE_URL}/api/bookings/admin`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -79,7 +80,7 @@ function AdminBookings() {
       setMessage("");
 
       const response = await fetch(
-        `http://localhost:5000/api/bookings/admin/${bookingId}/${action}`,
+        `${API_BASE_URL}/api/bookings/admin/${bookingId}/${action}`,
         {
           method: "PATCH",
           headers: {
@@ -156,6 +157,7 @@ function AdminBookings() {
         day: "2-digit",
         month: "short",
         year: "numeric",
+        timeZone: "UTC",
       }
     );
   };

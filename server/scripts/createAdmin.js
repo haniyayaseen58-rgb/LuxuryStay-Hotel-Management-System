@@ -5,20 +5,33 @@ const User = require("../models/User");
 
 dotenv.config();
 
+// Usage: set ADMIN_EMAIL and ADMIN_PASSWORD (and optionally ADMIN_NAME)
+// in server/.env or the shell, then run: npm run create-admin
 const createAdmin = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("MongoDB Connected");
+  const adminName = process.env.ADMIN_NAME || "LuxuryStay Admin";
+  const adminEmail = String(process.env.ADMIN_EMAIL || "")
+    .toLowerCase()
+    .trim();
+  const adminPassword = process.env.ADMIN_PASSWORD || "";
 
-    const adminEmail = "admin@luxurystay.com";
-    const adminPassword = "LuxuryStay@2026";
+  if (!adminEmail || adminPassword.length < 6) {
+    console.error(
+      "Set ADMIN_EMAIL and ADMIN_PASSWORD (at least 6 characters) before running this script."
+    );
+    process.exitCode = 1;
+    return;
+  }
+
+  try {
+    await mongoose.connect(process.env.MONGO_URI || process.env.MONGODB_URI);
+    console.log("MongoDB Connected");
 
     const existingAdmin = await User.findOne({
       email: adminEmail,
     });
 
     if (existingAdmin) {
-      console.log("Admin account already exists.");
+      console.log("An account with this email already exists. No changes made.");
       await mongoose.connection.close();
       return;
     }
@@ -26,7 +39,7 @@ const createAdmin = async () => {
     const hashedPassword = await bcrypt.hash(adminPassword, 10);
 
     await User.create({
-      name: "LuxuryStay Admin",
+      name: adminName,
       email: adminEmail,
       password: hashedPassword,
       role: "admin",
@@ -38,6 +51,7 @@ const createAdmin = async () => {
     await mongoose.connection.close();
   } catch (error) {
     console.error("Admin Creation Error:", error.message);
+    process.exitCode = 1;
     await mongoose.connection.close();
   }
 };

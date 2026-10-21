@@ -14,6 +14,48 @@ const router = express.Router();
 const BOOKING_CONFLICT_MESSAGE =
   "This room is already booked for the selected dates. Please choose another room or different dates.";
 
+// Store the selected calendar date as UTC midnight of that exact day,
+// so it never shifts because of server or browser timezones.
+const parseBookingDate = (value) => {
+  const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(value || ""));
+
+  if (!match) {
+    return new Date(NaN);
+  }
+
+  const year = Number(match[1]);
+  const month = Number(match[2]) - 1;
+  const day = Number(match[3]);
+  const date = new Date(Date.UTC(year, month, day));
+
+  // Reject impossible dates such as 2026-02-31 instead of rolling them over
+  if (
+    date.getUTCFullYear() !== year ||
+    date.getUTCMonth() !== month ||
+    date.getUTCDate() !== day
+  ) {
+    return new Date(NaN);
+  }
+
+  return date;
+};
+
+// Today's calendar date (server local time) in the same UTC-midnight form
+const getTodayBookingDate = () => {
+  const now = new Date();
+
+  return new Date(
+    Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())
+  );
+};
+
+// Maintenance has no known end date, so it always blocks a room.
+// Cleaning is short-lived, so it only blocks a same-day check-in.
+const isRoomStatusBlocking = (room, checkIn) =>
+  room.status === "maintenance" ||
+  (room.status === "cleaning" &&
+    checkIn.getTime() <= getTodayBookingDate().getTime());
+
 const ROOM_BUSY_MESSAGE =
   "This room is being booked right now. Please try again in a moment.";
 
@@ -83,8 +125,8 @@ router.get(
         });
       }
 
-      const checkIn = new Date(checkInDate);
-      const checkOut = new Date(checkOutDate);
+      const checkIn = parseBookingDate(checkInDate);
+      const checkOut = parseBookingDate(checkOutDate);
       const guestCount = Number(guests);
 
       if (
@@ -95,6 +137,14 @@ router.get(
           success: false,
           message:
             "Please select valid booking dates.",
+        });
+      }
+
+      if (checkIn < getTodayBookingDate()) {
+        return res.status(400).json({
+          success: false,
+          message:
+            "Check-in date cannot be in the past.",
         });
       }
 
@@ -117,20 +167,22 @@ router.get(
         });
       }
 
-      const rooms = await Room.find({
-        isActive: true,
-        capacity: {
-          $gte: guestCount,
-        },
-        status: {
-          $nin: [
-            "maintenance",
-            "cleaning",
-          ],
-        },
-      }).sort({
-        roomNumber: 1,
-      });
+      const rooms = (
+        await Room.find({
+          isActive: true,
+          capacity: {
+            $gte: guestCount,
+          },
+        }).sort({
+          roomNumber: 1,
+        })
+      ).filter(
+        (room) =>
+          !isRoomStatusBlocking(
+            room,
+            checkIn
+          )
+      );
 
       const roomIds = rooms.map(
         (room) => room._id
@@ -296,11 +348,11 @@ if (typeof guestDetails === "string") {
         });
       }
 
-      const checkIn = new Date(
+      const checkIn = parseBookingDate(
         checkInDate
       );
 
-      const checkOut = new Date(
+      const checkOut = parseBookingDate(
         checkOutDate
       );
 
@@ -319,11 +371,27 @@ if (typeof guestDetails === "string") {
         });
       }
 
+      if (checkIn < getTodayBookingDate()) {
+        return res.status(400).json({
+          success: false,
+          message:
+            "Check-in date cannot be in the past.",
+        });
+      }
+
       if (checkOut <= checkIn) {
         return res.status(400).json({
           success: false,
           message:
             "Check-out date must be after check-in date.",
+        });
+      }
+
+      if (isRoomStatusBlocking(room, checkIn)) {
+        return res.status(400).json({
+          success: false,
+          message:
+            "Selected room is not available.",
         });
       }
 

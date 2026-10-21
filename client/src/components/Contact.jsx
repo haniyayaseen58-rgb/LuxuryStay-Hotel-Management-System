@@ -10,6 +10,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
+import API_BASE_URL from "../config/api";
 import "./Contact.css";
 
 function Contact() {
@@ -59,7 +60,7 @@ function Contact() {
       setStatusType("");
 
       const response = await fetch(
-        "http://localhost:5000/api/contact",
+        `${API_BASE_URL}/api/contact`,
         {
           method: "POST",
           headers: {

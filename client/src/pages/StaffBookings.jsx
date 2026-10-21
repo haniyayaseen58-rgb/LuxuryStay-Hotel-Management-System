@@ -19,6 +19,7 @@ import {
   DoorOpen,
 } from "lucide-react";
 
+import API_BASE_URL from "../config/api";
 import "./StaffBookings.css";
 
 function StaffBookings() {
@@ -38,7 +39,7 @@ function StaffBookings() {
       setMessageType("");
 
       const response = await fetch(
-        "http://localhost:5000/api/bookings/staff",
+        `${API_BASE_URL}/api/bookings/staff`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -95,6 +96,7 @@ function StaffBookings() {
         day: "2-digit",
         month: "short",
         year: "numeric",
+        timeZone: "UTC",
       }
     );
   };

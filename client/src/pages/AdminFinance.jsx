@@ -23,6 +23,7 @@ import {
   X,
 } from "lucide-react";
 
+import API_BASE_URL from "../config/api";
 import "./AdminFinance.css";
 
 function AdminFinance() {
@@ -76,7 +77,7 @@ function AdminFinance() {
       }
 
       const response = await fetch(
-        "http://localhost:5000/api/bookings/admin/finance",
+        `${API_BASE_URL}/api/bookings/admin/finance`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -224,7 +225,7 @@ function AdminFinance() {
       setMessage("");
 
       const response = await fetch(
-        `http://localhost:5000/api/bookings/admin/${selectedBooking._id}/payment`,
+        `${API_BASE_URL}/api/bookings/admin/${selectedBooking._id}/payment`,
         {
           method: "PATCH",
           headers: {

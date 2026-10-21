@@ -20,6 +20,7 @@ import {
   UserRound,
 } from "lucide-react";
 
+import API_BASE_URL from "../config/api";
 import "./StaffDashboard.css";
 
 function StaffDashboard() {
@@ -51,13 +52,13 @@ function StaffDashboard() {
 
       const [bookingsResponse, roomsResponse, maintenanceResponse] =
         await Promise.all([
-          fetch("http://localhost:5000/api/bookings/staff", {
+          fetch(`${API_BASE_URL}/api/bookings/staff`, {
             headers,
           }),
-          fetch("http://localhost:5000/api/rooms", {
+          fetch(`${API_BASE_URL}/api/rooms`, {
             headers,
           }),
-          fetch("http://localhost:5000/api/maintenance", {
+          fetch(`${API_BASE_URL}/api/maintenance`, {
             headers,
           }),
         ]);
@@ -230,6 +231,7 @@ function StaffDashboard() {
         day: "2-digit",
         month: "short",
         year: "numeric",
+        timeZone: "UTC",
       }
     );
   };

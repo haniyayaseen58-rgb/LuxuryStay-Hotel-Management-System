@@ -24,6 +24,7 @@ import {
   MoonStar,
 } from "lucide-react";
 
+import API_BASE_URL from "../config/api";
 import "./BookRoom.css";
 
 function BookRoom() {
@@ -67,8 +68,6 @@ function BookRoom() {
     return null;
   };
 
-  const savedSearch = getSavedSearch();
-
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -78,7 +77,25 @@ function BookRoom() {
   );
 
   const formatDate = (date) =>
-    date.toISOString().split("T")[0];
+    `${date.getFullYear()}-${String(
+      date.getMonth() + 1
+    ).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+
+  // Adds days to a YYYY-MM-DD value using local dates (no UTC shift)
+  const addDays = (value, days) => {
+    const date = new Date(`${value}T00:00:00`);
+    date.setDate(date.getDate() + days);
+    return formatDate(date);
+  };
+
+  // Ignore a saved search whose dates are already in the past
+  const storedSearch = getSavedSearch();
+  const savedSearch =
+    storedSearch &&
+    storedSearch.checkIn >= formatDate(today) &&
+    storedSearch.checkOut > storedSearch.checkIn
+      ? storedSearch
+      : null;
 
   const [rooms, setRooms] = useState([]);
   const [loadingRooms, setLoadingRooms] =
@@ -193,22 +210,47 @@ function BookRoom() {
           formData.numberOfGuests
         );
 
+        const currentDate = new Date();
+        currentDate.setHours(0, 0, 0, 0);
+
+        let rangeError = "";
+
         if (
           Number.isNaN(
             checkIn.getTime()
           ) ||
           Number.isNaN(
             checkOut.getTime()
-          ) ||
-          checkOut <= checkIn ||
+          )
+        ) {
+          rangeError =
+            "Please select valid booking dates.";
+        } else if (
+          checkIn < currentDate
+        ) {
+          rangeError =
+            "Check-in date cannot be in the past.";
+        } else if (
+          checkOut <= checkIn
+        ) {
+          rangeError =
+            "Check-out date must be after check-in date.";
+        } else if (
           !Number.isInteger(guestCount) ||
           guestCount < 1
         ) {
+          rangeError =
+            "Please select a valid number of guests.";
+        }
+
+        if (rangeError) {
           setRooms([]);
           setFormData((current) => ({
             ...current,
             room: "",
           }));
+          setMessage(rangeError);
+          setMessageType("error");
           return;
         }
 
@@ -226,7 +268,7 @@ function BookRoom() {
             });
 
           const response = await fetch(
-            `http://localhost:5000/api/bookings/availability?${params.toString()}`,
+            `${API_BASE_URL}/api/bookings/availability?${params.toString()}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -382,6 +424,18 @@ function BookRoom() {
       "documentType"
         ? {
             documentNumber: "",
+          }
+        : {}),
+      // Keep check-out after check-in when check-in moves forward
+      ...(name === "checkInDate" &&
+      value &&
+      (!current.checkOutDate ||
+        current.checkOutDate <= value)
+        ? {
+            checkOutDate: addDays(
+              value,
+              1
+            ),
           }
         : {}),
     }));
@@ -601,7 +655,7 @@ function BookRoom() {
       }
 
       const response = await fetch(
-        "http://localhost:5000/api/bookings",
+        `${API_BASE_URL}/api/bookings`,
         {
           method: "POST",
           headers: {
@@ -886,12 +940,13 @@ function BookRoom() {
                   <input
                     type="date"
                     name="checkOutDate"
-                    min={
+                    min={addDays(
                       formData.checkInDate ||
-                      formatDate(
-                        today
-                      )
-                    }
+                        formatDate(
+                          today
+                        ),
+                      1
+                    )}
                     value={
                       formData.checkOutDate
                     }

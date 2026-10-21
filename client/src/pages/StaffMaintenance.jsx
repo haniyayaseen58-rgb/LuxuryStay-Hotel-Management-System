@@ -16,6 +16,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+import API_BASE_URL from "../config/api";
 import "./StaffMaintenance.css";
 
 function StaffMaintenance() {
@@ -44,12 +45,12 @@ function StaffMaintenance() {
       setError("");
 
       const [roomsResponse, tasksResponse] = await Promise.all([
-        fetch("http://localhost:5000/api/rooms", {
+        fetch(`${API_BASE_URL}/api/rooms`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }),
-        fetch("http://localhost:5000/api/maintenance", {
+        fetch(`${API_BASE_URL}/api/maintenance`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -131,7 +132,7 @@ function StaffMaintenance() {
       setMessage("");
 
       const response = await fetch(
-        "http://localhost:5000/api/maintenance",
+        `${API_BASE_URL}/api/maintenance`,
         {
           method: "POST",
           headers: {
@@ -182,7 +183,7 @@ function StaffMaintenance() {
       setMessage("");
 
       const response = await fetch(
-        `http://localhost:5000/api/maintenance/${taskId}/start`,
+        `${API_BASE_URL}/api/maintenance/${taskId}/start`,
         {
           method: "PATCH",
           headers: {
@@ -217,7 +218,7 @@ function StaffMaintenance() {
       setMessage("");
 
       const response = await fetch(
-        `http://localhost:5000/api/maintenance/${taskId}/complete`,
+        `${API_BASE_URL}/api/maintenance/${taskId}/complete`,
         {
           method: "PATCH",
           headers: {

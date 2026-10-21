@@ -19,6 +19,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 
+import API_BASE_URL from "../config/api";
 import "./AdminDashboard.css";
 
 function AdminDashboard() {
@@ -43,12 +44,12 @@ function AdminDashboard() {
 
       const [reportsResponse, feedbackResponse] =
         await Promise.all([
-          fetch("http://localhost:5000/api/reports/admin", {
+          fetch(`${API_BASE_URL}/api/reports/admin`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }),
-          fetch("http://localhost:5000/api/feedback/admin", {
+          fetch(`${API_BASE_URL}/api/feedback/admin`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },

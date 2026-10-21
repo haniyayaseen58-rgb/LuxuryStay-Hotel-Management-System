@@ -15,10 +15,8 @@ import {
   Hotel,
 } from "lucide-react";
 
+import API_BASE_URL from "../config/api";
 import "./AdminRooms.css";
-
-const API_URL =
-  "https://luxury-stay-hotel-management-system-hzn8-qsgkf4yqb.vercel.app";
 
 function AdminRooms() {
   const navigate = useNavigate();
@@ -46,7 +44,7 @@ function AdminRooms() {
     try {
       setLoading(true);
 
-      const response = await fetch(`${API_URL}/api/rooms`, {
+      const response = await fetch(`${API_BASE_URL}/api/rooms`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -111,8 +109,8 @@ function AdminRooms() {
       };
 
       const url = editingRoomId
-        ? `${API_URL}/api/rooms/${editingRoomId}`
-        : `${API_URL}/api/rooms`;
+        ? `${API_BASE_URL}/api/rooms/${editingRoomId}`
+        : `${API_BASE_URL}/api/rooms`;
 
       const response = await fetch(url, {
         method: editingRoomId ? "PUT" : "POST",
@@ -177,7 +175,7 @@ function AdminRooms() {
       setMessage("");
 
       const response = await fetch(
-        `${API_URL}/api/rooms/${roomId}`,
+        `${API_BASE_URL}/api/rooms/${roomId}`,
         {
           method: "DELETE",
           headers: {

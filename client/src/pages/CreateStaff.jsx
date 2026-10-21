@@ -10,6 +10,7 @@ import {
   Eye,
   EyeOff,
 } from "lucide-react";
+import API_BASE_URL from "../config/api";
 
 function CreateStaff() {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ function CreateStaff() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        "http://localhost:5000/api/auth/create-staff",
+        `${API_BASE_URL}/api/auth/create-staff`,
         {
           method: "POST",
           headers: {

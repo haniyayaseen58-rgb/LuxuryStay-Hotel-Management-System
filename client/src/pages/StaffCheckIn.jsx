@@ -22,6 +22,7 @@ import {
   CreditCard,
 } from "lucide-react";
 
+import API_BASE_URL from "../config/api";
 import "./StaffCheckIn.css";
 
 function StaffCheckIn() {
@@ -46,7 +47,7 @@ function StaffCheckIn() {
       setMessageType("");
 
       const response = await fetch(
-        "http://localhost:5000/api/bookings/staff",
+        `${API_BASE_URL}/api/bookings/staff`,
         {
           headers: {
             Authorization:
@@ -102,7 +103,7 @@ function StaffCheckIn() {
       setMessageType("");
 
       const response = await fetch(
-        `http://localhost:5000/api/bookings/staff/${bookingId}/check-in`,
+        `${API_BASE_URL}/api/bookings/staff/${bookingId}/check-in`,
         {
           method: "PATCH",
           headers: {
@@ -163,6 +164,7 @@ function StaffCheckIn() {
         day: "2-digit",
         month: "short",
         year: "numeric",
+        timeZone: "UTC",
       }
     );
   };

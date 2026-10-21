@@ -9,6 +9,7 @@ import {
   RefreshCw,
   Hotel,
 } from "lucide-react";
+import API_BASE_URL from "../config/api";
 
 function GuestProfile() {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ function GuestProfile() {
       setMessage("");
 
       const response = await fetch(
-        "http://localhost:5000/api/auth/me",
+        `${API_BASE_URL}/api/auth/me`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -92,7 +93,7 @@ function GuestProfile() {
       setMessage("");
 
       const response = await fetch(
-        "http://localhost:5000/api/auth/me",
+        `${API_BASE_URL}/api/auth/me`,
         {
           method: "PUT",
           headers: {

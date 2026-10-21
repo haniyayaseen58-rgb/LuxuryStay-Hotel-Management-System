@@ -6,3 +6,5 @@ dist/
 build/
 server/uploads/
 *.log
+
+*.mp4

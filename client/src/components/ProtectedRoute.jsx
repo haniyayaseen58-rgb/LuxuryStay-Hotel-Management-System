@@ -1,9 +1,34 @@
 import { Navigate } from "react-router-dom";
 
+// Reads the JWT payload (without verifying it; the backend does that)
+// so an expired or malformed token sends the user back to sign in.
+const isTokenExpired = (token) => {
+  try {
+    const payload = JSON.parse(
+      atob(token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))
+    );
+
+    return !payload.exp || payload.exp * 1000 <= Date.now();
+  } catch {
+    return true;
+  }
+};
+
+const getStoredUser = () => {
+  try {
+    return JSON.parse(localStorage.getItem("user"));
+  } catch {
+    return null;
+  }
+};
+
 function ProtectedRoute({ children, allowedRole }) {
   const token = localStorage.getItem("token");
-  const user = JSON.parse(localStorage.getItem("user"));
-  if (!token || !user) {
+  const user = getStoredUser();
+
+  if (!token || !user || isTokenExpired(token)) {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     return <Navigate to="/auth" replace />;
   }
 

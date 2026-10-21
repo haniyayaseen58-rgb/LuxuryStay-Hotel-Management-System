@@ -16,6 +16,7 @@ import {
   Hotel,
 } from "lucide-react";
 
+import API_BASE_URL from "../config/api";
 import "./StaffGuests.css";
 
 function StaffGuests() {
@@ -33,7 +34,7 @@ function StaffGuests() {
       setError("");
 
       const response = await fetch(
-        "http://localhost:5000/api/bookings/staff",
+        `${API_BASE_URL}/api/bookings/staff`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -169,6 +170,7 @@ function StaffGuests() {
       day: "2-digit",
       month: "short",
       year: "numeric",
+      timeZone: "UTC",
     });
   };
 

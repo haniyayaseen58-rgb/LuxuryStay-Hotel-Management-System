@@ -16,9 +16,10 @@ import {
   KeyRound,
 } from "lucide-react";
 
+import API_BASE_URL from "../config/api";
 import "./Auth.css";
 
-const API_URL = "http://localhost:5000/api/auth";
+const API_URL = `${API_BASE_URL}/api/auth`;
 
 function Auth() {
   const navigate = useNavigate();
@@ -69,7 +70,11 @@ function Auth() {
       body: JSON.stringify(body),
     });
 
-    const data = await response.json();
+    const data = await response.json().catch(() => {
+      throw new Error(
+        "Unable to reach the LuxuryStay server. Please try again later."
+      );
+    });
 
     if (!response.ok) {
       throw new Error(data.message || "Something went wrong.");

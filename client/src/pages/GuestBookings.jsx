@@ -21,6 +21,7 @@ import {
   Sparkles,
   Send,
 } from "lucide-react";
+import API_BASE_URL from "../config/api";
 
 function GuestBookings() {
   const navigate = useNavigate();
@@ -52,7 +53,7 @@ function GuestBookings() {
       const [bookingResponse, feedbackResponse] =
         await Promise.all([
           fetch(
-            "http://localhost:5000/api/bookings/my-bookings",
+            `${API_BASE_URL}/api/bookings/my-bookings`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -60,7 +61,7 @@ function GuestBookings() {
             }
           ),
           fetch(
-            "http://localhost:5000/api/feedback/my",
+            `${API_BASE_URL}/api/feedback/my`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -106,6 +107,7 @@ function GuestBookings() {
       day: "2-digit",
       month: "short",
       year: "numeric",
+      timeZone: "UTC",
     });
   };
 
@@ -216,7 +218,7 @@ function GuestBookings() {
       setFeedbackError("");
 
       const response = await fetch(
-        "http://localhost:5000/api/feedback",
+        `${API_BASE_URL}/api/feedback`,
         {
           method: "POST",
           headers: {

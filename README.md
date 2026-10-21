@@ -88,11 +88,11 @@ This project was developed as an academic E-Project to demonstrate frontend deve
 
 Admin
 Email: admin@luxury.com
-Password: [admin12]
+Password: admin12
 
 Staff
 Email: saadkhan@luxury.com
-Password: [saadkhan1]
+Password: saadkhan1
 
 Guest
 Email: [user@gmail.com]

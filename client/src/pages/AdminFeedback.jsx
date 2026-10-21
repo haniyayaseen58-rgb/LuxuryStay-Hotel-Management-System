@@ -17,6 +17,7 @@ import {
   Mail,
 } from "lucide-react";
 
+import API_BASE_URL from "../config/api";
 import "./AdminFeedback.css";
 
 function AdminFeedback() {
@@ -45,7 +46,7 @@ function AdminFeedback() {
       setError("");
 
       const response = await fetch(
-        "http://localhost:5000/api/feedback/admin",
+        `${API_BASE_URL}/api/feedback/admin`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -89,7 +90,7 @@ function AdminFeedback() {
       setError("");
 
       const response = await fetch(
-        `http://localhost:5000/api/feedback/admin/${feedbackId}/review`,
+        `${API_BASE_URL}/api/feedback/admin/${feedbackId}/review`,
         {
           method: "PATCH",
           headers: {
@@ -139,6 +140,17 @@ function AdminFeedback() {
       day: "2-digit",
       month: "short",
       year: "numeric",
+    });
+  };
+
+  const formatStayDate = (date) => {
+    if (!date) return "N/A";
+
+    return new Date(date).toLocaleDateString("en-PK", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      timeZone: "UTC",
     });
   };
 
@@ -646,11 +658,11 @@ function AdminFeedback() {
                     <div>
                       <CalendarDays size={15} />
                       <span>
-                        {formatDate(
+                        {formatStayDate(
                           item.booking?.checkInDate
                         )}{" "}
                         —{" "}
-                        {formatDate(
+                        {formatStayDate(
                           item.booking?.checkOutDate
                         )}
                       </span>

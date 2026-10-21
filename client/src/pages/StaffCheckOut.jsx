@@ -21,6 +21,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
+import API_BASE_URL from "../config/api";
 import "./StaffCheckOut.css";
 
 function StaffCheckOut() {
@@ -42,7 +43,7 @@ function StaffCheckOut() {
       setMessageType("");
 
       const response = await fetch(
-        "http://localhost:5000/api/bookings/staff",
+        `${API_BASE_URL}/api/bookings/staff`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -83,7 +84,7 @@ function StaffCheckOut() {
       setMessageType("");
 
       const response = await fetch(
-        `http://localhost:5000/api/bookings/staff/${bookingId}/check-out`,
+        `${API_BASE_URL}/api/bookings/staff/${bookingId}/check-out`,
         {
           method: "PATCH",
           headers: {
@@ -124,6 +125,7 @@ function StaffCheckOut() {
       day: "2-digit",
       month: "short",
       year: "numeric",
+      timeZone: "UTC",
     });
   };
 

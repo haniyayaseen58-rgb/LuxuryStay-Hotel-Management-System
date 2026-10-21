@@ -11,6 +11,7 @@ import {
   Clock3,
 } from "lucide-react";
 
+import API_BASE_URL from "../config/api";
 import "./StaffHousekeeping.css";
 
 function StaffHousekeeping() {
@@ -30,7 +31,7 @@ function StaffHousekeeping() {
       setError("");
 
       const response = await fetch(
-        "http://localhost:5000/api/rooms/housekeeping",
+        `${API_BASE_URL}/api/rooms/housekeeping`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -65,7 +66,7 @@ function StaffHousekeeping() {
       setError("");
 
       const response = await fetch(
-        `http://localhost:5000/api/rooms/housekeeping/${roomId}/complete`,
+        `${API_BASE_URL}/api/rooms/housekeeping/${roomId}/complete`,
         {
           method: "PATCH",
           headers: {

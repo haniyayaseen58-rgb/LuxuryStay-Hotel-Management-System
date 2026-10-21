@@ -16,6 +16,7 @@ import {
   Eye,
 } from "lucide-react";
 
+import API_BASE_URL from "../config/api";
 import "./StaffRooms.css";
 
 function StaffRooms() {
@@ -33,7 +34,7 @@ function StaffRooms() {
       setMessage("");
 
       const response = await fetch(
-        "http://localhost:5000/api/rooms",
+        `${API_BASE_URL}/api/rooms`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
